@@ -2,3 +2,4 @@ rough
 __pycache__
 .vscode
 **/__pycache__
+*.egg-info
