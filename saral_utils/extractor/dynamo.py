@@ -1,7 +1,7 @@
 from botocore.exceptions import ClientError
 import boto3
 from typing import Union, Dict
-from utils.env import EnvVars
+from utils.env import get_env_var
 
 
 class DynamoDB:
@@ -17,8 +17,8 @@ class DynamoDB:
             region (Union[str, None], optional): region where dynamodb table is present. If not provided `MY_REGION` from env will be read, if not present in env error will be thrown. Defaults to None.
         """        
 
-        self.env = EnvVars.MY_ENV if env is None else env
-        self.region = EnvVars.MY_REGION if region is None else region
+        self.env = get_env_var('MY_ENV') if env is None else env
+        self.region = get_env_var('MY_REGION') if region is None else region
         self.table = table
         self.ddb = boto3.client('dynamodb', region_name=self.region)
 
