@@ -1,7 +1,7 @@
 from botocore.exceptions import ClientError
 import boto3
 from typing import Union, Dict
-from utils.env import get_env_var
+from saral_utils.utils.env import get_env_var
 
 
 class DynamoDB:
