@@ -3,6 +3,7 @@ import boto3
 from typing import Union, Dict
 from saral_utils.utils.env import get_env_var
 
+
 class DynamoDB:
     """An Extractor class for extracting data from dynamodb
     """
