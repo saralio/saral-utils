@@ -37,17 +37,17 @@ class DynamoDB:
             response = self.ddb.query(
                 TableName=self.table,
                 **kwargs
-            )
+            )['Items']
         except ClientError as error:
             raise error
 
         return response
 
-    def get_item(self, key: str) -> Dict:
+    def get_item(self, key: Dict) -> Dict:
         """Queries a particular item from dynamodb
 
         Args:
-            key (str): key for querying a particular item
+            key (Dict): a dict that uniquely identifies the record in table, mostly a combination of partition key and sort key
 
         Raises:
             error: if unable to fetch the result
@@ -56,8 +56,25 @@ class DynamoDB:
             Dict: queried item
         """        
         try:
-            response = self.ddb.get_item(TableName=self.table, Key=key)
+            response = self.ddb.get_item(TableName=self.table, Key=key)['Item']
         except ClientError as error:
             raise error
 
+        return response
+
+    def put_item(self, payload: Dict) -> Dict:
+        """Uploads item to dynamodb, if the item already exists, it will replace the existing item completely
+
+        Args:
+            payload (Dict): in the format dynamodb expects with mapped values e.g. `{'id': {'S': '1234feted'}...}`
+
+        Returns:
+            Dict: response dictionary if successful otherwise error
+        """        
+
+        try:
+            response = self.ddb.put_item(TableName=self.table, Item=payload)
+        except ClientError as error:
+            raise error
+        
         return response
