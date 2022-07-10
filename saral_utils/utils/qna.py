@@ -1,5 +1,6 @@
 from typing import List, Dict
 
+
 def normalize_options(options: List) -> List[Dict[str, str]]:
     """normalizes a dictionary from dynamodb, specific to options
 
@@ -8,7 +9,7 @@ def normalize_options(options: List) -> List[Dict[str, str]]:
 
     Returns:
         List[Dict[str, str]]: a list with normalized options in dictonary format. Of the form [{'is_correct':..., 'text':..., 'image_path_exists':...}]
-    """    
+    """
     flat = []
     for option in options:
         opt = {}
@@ -19,6 +20,7 @@ def normalize_options(options: List) -> List[Dict[str, str]]:
 
         flat.append(opt)
     return flat
+
 
 def image_exist(question: Dict) -> bool:
     """for a given question from `saral-questions` table check if the question has any image associated with it whether in question or in option
@@ -40,3 +42,32 @@ def image_exist(question: Dict) -> bool:
         return True
     else:
         return False
+
+
+def links_exist(question: Dict) -> bool:
+    """checks if the question has any links for further reading
+
+    Args:
+        question (Dict): question dictionary from `saral-question` dynamo table
+
+    Returns:
+        bool: True if links exist otherwise False
+    """
+    return True if 'L' in question['links'].keys() else False
+
+
+def normalize_links(links: List) -> List[str]:
+    """returns a list of normalized links
+
+    Args:
+        links (List): A list of unsanatized links from question's data, of the form of `[{'S': 'exte'}, {'S': 'ete'}, ...]`
+
+    Returns:
+        List[str]: returns a santized list of links, of the form of `['xyz', 'tywer', 'tet', ...]`
+    """
+
+    santazied_links = []
+    for link in links:
+        santazied_links.append(link['S'])
+
+    return santazied_links
