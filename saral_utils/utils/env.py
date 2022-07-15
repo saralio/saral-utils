@@ -33,6 +33,10 @@ def create_env_api_url(url: str) -> str:
 
     env = get_env_var('MY_ENV')
     if env != 'prod':
-        url = f'{env}-{url}'
+        if len(url.split('.')) == 3:
+            url = f'{env}-{url}'
+        else:
+            url = f'{env}.{url}'
+
     return f'https://{url}'
 
