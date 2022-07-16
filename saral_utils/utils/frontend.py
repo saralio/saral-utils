@@ -1,6 +1,6 @@
 # utility functions related to frontend (consumer facing) components
 from typing import Union
-from env import create_env_api_url
+from .env import create_env_api_url
 
 class ShareLinks:
     def __init__(self, email_id: Union[str, None] = None):
