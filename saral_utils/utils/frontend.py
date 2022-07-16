@@ -20,5 +20,6 @@ class ShareLinks:
         self.donation_link = 'https://www.buymeacoffee.com/NgFs2zX'
         self.my_account_link = 'https://twitter.com/mohitsh48631107'
         self.youtube_link = "https://www.youtube.com/channel/UChZfYRQRGADaLtgdYaB0YBg"
+        self.feedback_link = "https://forms.gle/nNafF5sHS1ezwHoH9"
         if email_id is not None:
             self.unsubscribe_link = create_env_api_url(url=f'deregister.saral.club/emailId/{email_id}')
