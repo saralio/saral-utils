@@ -19,5 +19,6 @@ class ShareLinks:
         self.sharing_link = f'https://twitter.com/intent/tweet?text=' #type:ignore
         self.donation_link = 'https://www.buymeacoffee.com/NgFs2zX'
         self.my_account_link = 'https://twitter.com/mohitsh48631107'
+        self.youtube_link = "https://www.youtube.com/channel/UChZfYRQRGADaLtgdYaB0YBg"
         if email_id is not None:
             self.unsubscribe_link = create_env_api_url(url=f'deregister.saral.club/emailId/{email_id}')
