@@ -1,5 +1,4 @@
 
-from dataclasses import dataclass
 import os
 
 def get_env_var(env: str) -> str:
@@ -19,3 +18,25 @@ def get_env_var(env: str) -> str:
         raise ValueError(f'Provided environment variable is not present in environment')
 
     return env_var
+
+def create_env_api_url(url: str) -> str:
+    """depending on the environment variable returns the api url. Attaches the environment variable at the beggining of api url e.g. `https://test-deregister.saral.club`. But for prod it's without env i.e. `https://deregister.saral.club`
+
+    Args:
+        url (str): URL string
+
+    Returns:
+        str: `https://test-deregister.saral.club` for test/stg environment and `https://deregister.saral.club` for prod environments
+    """
+    if url.startswith('http'):
+        url = url.split('//')[-1]
+
+    env = get_env_var('MY_ENV')
+    if env != 'prod':
+        if len(url.split('.')) == 3:
+            url = f'{env}-{url}'
+        else:
+            url = f'{env}.{url}'
+
+    return f'https://{url}'
+
