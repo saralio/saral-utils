@@ -33,7 +33,8 @@ def create_env_api_url(url: str) -> str:
 
     env = get_env_var('MY_ENV')
     if env != 'prod':
-        if len(url.split('.')) == 3:
+        first_word = url.split('.')[0]
+        if first_word != 'saral':
             url = f'{env}-{url}'
         else:
             url = f'{env}.{url}'
