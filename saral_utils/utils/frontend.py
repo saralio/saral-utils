@@ -8,9 +8,6 @@ class ShareLinks:
 
         Args:
             email_id (str, None): email id for creating email id dependent link for deregister url
-
-        Returns:
-            Dict[str, str]: with links e.g. `{'twitter_account_link', 'twitter_hashtag_link', 'saral_website_link', 'base_sharing_link', 'donation_link', 'personal_account_link', 'unsubscribe_link'}`
         """    
 
         self.twitter_account_link = "https://twitter.com/data_question"
@@ -21,5 +18,12 @@ class ShareLinks:
         self.my_account_link = 'https://twitter.com/mohitsh48631107'
         self.youtube_link = "https://www.youtube.com/channel/UChZfYRQRGADaLtgdYaB0YBg"
         self.feedback_link = "https://forms.gle/nNafF5sHS1ezwHoH9"
+        self.twitter_rstats = "https://twitter.com/data_question"
+        self.twitter_python = "https://twitter.com/python_a_day"
+        # TODO: [SAR-178] create saral twitter account and update the url here
+        # self.twitter_saral = "https://twitter.com/saral"
+        self.kofi = "https://ko-fi.com/dsqad"
+        self.buy_me_a_coffee = "https://www.buymeacoffee.com/NgFs2zX"
+        self.paypal = "https://paypal.me/mohit2013?country.x=IN&locale.x=en_GB"
         if email_id is not None:
             self.unsubscribe_link = create_env_api_url(url=f'deregister.saral.club/emailId/{email_id}')
