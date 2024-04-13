@@ -38,4 +38,5 @@ class DataBase(RDSSecrets):
         return engine
 
     def _check_connection(self):
-        self.engine.connect()
+        cnx = self.engine.connect()
+        return cnx.connection.is_valid
